@@ -6,8 +6,8 @@
 **/
 
 exports.ingresar = (req, res) => {
-  const item = req.body.user
-  if (!item) res.send('Data Vacia')
+  const item = req.body
+  if (!item) return res.send('Data Vacia')
   req.app.db.models.user.create(item, (err, resp) => {
     if (err) {
       console.log('fallo al ingresar! ' + err)
@@ -73,8 +73,7 @@ exports.borrar = (req, res) => {
 * Implementation of the PUT method for the user collection
 **/
 exports.update = (req, res) => {
-  const item = req.body.user
-  console.log(item)
+  const item = req.body
   req.app.db.models.user.update(item, (err, data) => {
     if (err) {
       console.log('fallo al actualizar! ' + err)
